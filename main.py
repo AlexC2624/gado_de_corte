@@ -2,7 +2,7 @@ from front import Front
 from cadastro import Cadastro
 from analise import Analise
 
-def start():
+def partida():
     # Variáveis do sistema
     TXT = 'txt'
     TXT_UNIC = 'txt_unic'
@@ -193,7 +193,9 @@ def start():
 
             del classe
 
-if __name__ == '__main__':
+def start():
     try:
-        start()
+        partida()
     except KeyboardInterrupt: print('\n\n\tSistema interompido!!!\n')
+
+if __name__ == '__main__': start()
