@@ -139,6 +139,7 @@ class Banco:
 
         Retorna:
             list[list[str]]: Lista de listas contendo os dados do arquivo CSV, incluindo o cabeçalho.
+            False: Se o arquivo não existir.
         """
         try:
             with open(self.arquivo_completo, mode='r', newline='', encoding='utf-8') as file:
