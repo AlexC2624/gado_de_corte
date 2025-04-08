@@ -16,7 +16,7 @@ def user_1():
         if senha == SENHA_CORRETA:
             pass
         else: return False, 'A senha informada esta incorreta!!!'
-    else: return False, 'O nome de usuário está incoreto!!!'
+    else: return False, 'O nome de usuário não está cadastrado!!!'
 
 def iniciar(): app.run(debug=True, host='0.0.0.0', port=5000)
 
