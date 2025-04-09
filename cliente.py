@@ -1,8 +1,9 @@
 import requests
 
-url = 'http://127.0.0.1:5000/user-1'
+url = 'http://127.0.0.1:5000/usuario'
 dados = {
-    'senha': '12345678'  # experimente mudar para testar
+    'user_name': 'user1',
+    'senha': '123'  # experimente mudar para testar
 }
 
 resposta = requests.post(url, json=dados)
