@@ -1,33 +1,28 @@
-from main import start
-from flask import Flask, request, jsonify
 
-app = Flask(__name__)
+def start(host='127.0.0.1', port=5000):
+    import socket
 
-usuarios = {
-    'user1': {'senha': '123'}
-}
+    servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    servidor.bind((host, port))
 
-@app.route('/', methods=['GET'])
-def index(): return 'Esta página não pode ser acessada por navegador, entre em contato com o desenvolvedor para mais informações!'
+    servidor.listen(1)
+    print("Aguardando conexão...")
 
-@app.route('/usuario', methods=['POST'])
-def usuario():
-    if request.is_json:
-        dados = request.get_json()
-        user_nane = dados.get('user_name')
-        senha = dados.get('senha')
-        print(dados, user_nane, senha, sep='\n')
+    conn, addr = servidor.accept()
+    print(f"Conectado por {addr}")
 
-        if user_nane in list(usuarios.keys()):
-            if senha == usuarios[user_nane]['senha']:
-                print('acessado com sucesso')
-                return jsonify({'mensagem': 'Acesso concedido com sucesso!'}), 200
-            else:
-                return jsonify({'erro': 'A senha informada está incorreta!'}), 401
-        else: return jsonify({'erro': 'O usuario não está cadastrado!'}), 404
-    else:
-        return jsonify({'erro': 'Requisição precisa estar no formato JSON!'}), 400
+    while True:
+        dados = conn.recv(1024)
+        if not dados:
+            break
+        dados = dados.decode()
+        print('dados', dados)
 
-def iniciar(): app.run(debug=True, host='0.0.0.0', port=5000)
+        if dados == '123': resposta = '123'
+        else: resposta = f'Resposta do servidor: {dados}'
+        conn.sendall(resposta.encode())
 
-if __name__ == '__main__': app.run(debug=True, host='0.0.0.0', port=5000)
+    conn.close()
+    print('Conexão finalizada')
+
+if __name__ == '__main__': start()
