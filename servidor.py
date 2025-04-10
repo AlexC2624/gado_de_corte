@@ -5,6 +5,7 @@ def start(host='127.0.0.1', port=5000):
     servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     servidor.bind((host, port))
 
+    print('Servidor iniciado com sucesso')
     servidor.listen(1)
     print("Aguardando conexão...")
 
