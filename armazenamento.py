@@ -238,6 +238,7 @@ class Banco:
 
         Returns:
             int: Quantidade de registros (excluindo o cabeçalho, se houver).
+            int: 0 se o arquivo não existe.
         """
         try:
             with open(self.arquivo_completo, mode='r', newline='', encoding='utf-8') as file:
