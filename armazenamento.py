@@ -107,7 +107,7 @@ class Banco:
             writer = csv.writer(backup)
             writer.writerow([self.__data_hora_atual__(), arquivo_alterado, dados])
 
-    def escrever(self, valores, sobescrever= False):
+    def escrever(self, valores, sobrescrever= False):
         """
         Escreve novos dados no arquivo CSV.
 
@@ -126,9 +126,17 @@ class Banco:
         dados = self.ler()
         valores = [self.__proximo_id__(dados)] + valores
         
-        with open(self.arquivo_completo, mode='a' if sobescrever else 'w', newline='', encoding='utf-8') as file:
-            writer = csv.writer(file)
-            writer.writerow(valores)
+        if sobrescrever:
+            titulo = self.ler()[0]
+            with open(self.arquivo_completo, mode='w', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                writer.writerow(titulo)
+                writer.writerow(valores)
+        else:
+            with open(self.arquivo_completo, mode='a', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                writer.writerow(valores)
+                
         return 'Dados salvos com sucesso '
 
     def ler(self):
