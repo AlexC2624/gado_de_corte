@@ -1,3 +1,4 @@
+from sincronizar_dados import Sincronizar
 from front import Front
 from cadastro import Cadastro
 from analise import Analise
@@ -195,7 +196,10 @@ def partida():
 
 def start():
     try:
+        sincronizacao = Sincronizar()
+        if not sincronizacao.start()[0]: input('Trabalhando off-line ')
         partida()
+        sincronizacao.start()
     except KeyboardInterrupt: print('\n\n\tSistema interompido!!!\n')
 
 if __name__ == '__main__': start()
