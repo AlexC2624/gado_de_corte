@@ -1,6 +1,4 @@
 import os
-import re
-from datetime import datetime
 
 class Front:
     def __init__(self): pass
@@ -129,7 +127,11 @@ class Front:
         Retorna:  
             None  
         """
-        print('Saindo...\n')
+        print('\nSaindo...')
+        from sincronizar_dados import Sincronizar
+        sincronizar = Sincronizar()
+        if not sincronizar.start()[0]: input('Os dados locais não foram mandados para o servidor! ')
+        print('\n')
         exit()
 
 if __name__ == '__main__':

@@ -199,7 +199,7 @@ def start():
         sincronizacao = Sincronizar()
         if not sincronizacao.start()[0]: input('Trabalhando off-line ')
         partida()
-        sincronizacao.start()
+        # sincronizacao.start()
     except KeyboardInterrupt: print('\n\n\tSistema interompido!!!\n')
 
 if __name__ == '__main__': start()
