@@ -128,10 +128,6 @@ class Front:
             None  
         """
         print('\nSaindo...')
-        from sincronizar_dados import Sincronizar
-        sincronizar = Sincronizar()
-        if not sincronizar.start()[0]: input('Os dados locais não foram mandados para o servidor! ')
-        print('\n')
         exit()
 
 if __name__ == '__main__':
