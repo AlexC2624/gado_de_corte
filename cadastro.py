@@ -152,7 +152,7 @@ class Cadastro:
             dados = animais_comprados.ler()
             for i, nome_coluna in enumerate(argumento["dados_salvos"]["colunas"]): dados[0][i] = nome_coluna
 
-            input(argumento["dados_salvos"].get("calcular_estoque", False))
+            # input(argumento["dados_salvos"].get("calcular_estoque", False))
             if argumento["dados_salvos"].get("calcular_estoque", False):
                 if_comparar = [linha[1] for linha in dados_verf_txt]
                 input(if_comparar)
