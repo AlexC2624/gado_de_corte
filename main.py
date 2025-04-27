@@ -15,6 +15,7 @@ def partida():
         "insumo_dados": "insumo_dados.csv",
         "insumo_comprado": "insumo_comprado.csv",
         "insumo_consumo": "insumo_consumo.csv",
+        "insumo_estoque": "insumo_estoque.csv",
         "animal_comprado": "animal_comprado.csv",
         "animal_vendido": "animal_vendido.csv",
         "categoria_financeiro": "categoria_financeiro.csv",
@@ -46,7 +47,12 @@ def partida():
                             "dados_salvos": {   # Imprime os dados salvos por causa do ID que deve ser um existente
                                 "titulo": "Insumos Cadastrados",
                                 "arquivo": CSV["insumo_dados"],
-                                "colunas": ["ID", "Nome", "Unid.", "Fornecedor"]
+                                "colunas": ["ID", "Nome", "Unid.", "Fornecedor"],
+                                "exibir_estoque": {
+                                    "arquivo": CSV["insumo_estoque"],
+                                    "obter_coluna": "x",
+                                    "adicionar_antes_de": ""
+                                }
                             },
                             "titulo": "Cadastro de Compra de Insumo",
                             "arquivo": CSV["insumo_comprado"],
@@ -97,7 +103,7 @@ def partida():
                                 "titulo": "Animais Ativos",
                                 "arquivo": CSV["animal_comprado"],
                                 "colunas": ["ID", "Data", "Nome", "Peso", 'Preco(R$/Kg)', 'Fornecedor'],
-                                "calcular_estoque": True,
+                                
                             },
                             "titulo": "Cadastro de Venda de Animais",
                             "arquivo": CSV["animal_vendido"],
