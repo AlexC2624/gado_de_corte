@@ -163,7 +163,6 @@ class Cadastro:
                         if not linha[0] in animais_vendidos_ids:
                             # lista com os ids dos animais que estão no lote
                             saldo_atual.append(int(linha[0]))
-
                 else:
                     for linha in animais_comprados_matrix[1:]: saldo_atual.append(int(linha[0]))
                     
@@ -172,11 +171,11 @@ class Cadastro:
                 saldo_atual[0] = argumento["dados_salvos"]["colunas"]   # cabeçalho
                 for linha in animais_comprados_matrix[1:]:
                     saldo_atual.append(linha)
-
+            print(saldo_atual)
         else: 
             comparar_txt = True
 
-        dados_tabelado = self.front.__formatar_matriz__(saldo_atual)
+        dados_tabelado = self.front.__formatar_matriz__([saldo_atual])
         for linha in dados_tabelado: print(linha)
 
         perguntas_com_tipo = [argumento['colunas'][coluna] for coluna in colunas_banco]
