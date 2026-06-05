@@ -152,31 +152,24 @@ class Cadastro:
             for i, nome_coluna in enumerate(argumento["dados_salvos"]["colunas"]):
                 animais_comprados_matrix[0][i] = nome_coluna    # troca o cabeçalho para melhor visualização
 
-            if animais_vendidos_matrix: # verifica se tem animais vendidos
-                input(argumento["dados_salvos"].get("calcular_estoque", False))
-                # verifica se é para calcular o estoque
+            saldo_atual[0] = argumento["dados_salvos"]["colunas"]   # cabeçalho
+            if animais_vendidos_matrix:  # verifica se tem animais vendidos
                 if argumento["dados_salvos"].get("calcular_estoque", False):
                     animais_vendidos_ids = [linha[1] for linha in animais_vendidos_matrix[1:]]
-                    input(animais_vendidos_ids)
                     for i, linha in enumerate(animais_comprados_matrix[1:], 1):
-                        # verifica se a coluna ID dos animais comprados NÃO esta em animais vendidos
                         if not linha[0] in animais_vendidos_ids:
-                            # lista com os ids dos animais que estão no lote
-                            saldo_atual.append(int(linha[0]))
+                            saldo_atual.append(linha)
                 else:
-                    for linha in animais_comprados_matrix[1:]: saldo_atual.append(int(linha[0]))
-                    
+                    for linha in animais_comprados_matrix[1:]: saldo_atual.append(linha)
                 del animais_comprados
             else:
-                saldo_atual[0] = argumento["dados_salvos"]["colunas"]   # cabeçalho
                 for linha in animais_comprados_matrix[1:]:
                     saldo_atual.append(linha)
-            print(saldo_atual)
-        else: 
-            comparar_txt = True
 
-        dados_tabelado = self.front.__formatar_matriz__([saldo_atual])
-        for linha in dados_tabelado: print(linha)
+            dados_tabelado = self.front.__formatar_matriz__(saldo_atual)
+            for linha in dados_tabelado: print(linha)
+        else:
+            comparar_txt = True
 
         perguntas_com_tipo = [argumento['colunas'][coluna] for coluna in colunas_banco]
 
@@ -197,4 +190,4 @@ class Cadastro:
                     break
                 if escolha == 'C' or escolha == 'c': return
             if salvar: break
-        input(animais_vendidos.escrever(dados))
+        animais_vendidos.escrever(dados)

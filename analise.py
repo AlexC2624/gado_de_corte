@@ -19,9 +19,7 @@ class Analise:
 
         if not False in [dados, compras, consumos]:
             # Ignorar as primeiras linhas de cabeçalhos
-            dados, compras, consumos = dados[1:], compras[1:], consumos[1:] # Remove o titulo
-            compras = compras[1:]
-            consumos = consumos[1:]
+            dados, compras, consumos = dados[1:], compras[1:], consumos[1:]  # Remove o titulo
             
             # Criar um dicionário para armazenar o estoque de cada insumo
             estoque = {}
